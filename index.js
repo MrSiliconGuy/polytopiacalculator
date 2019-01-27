@@ -958,12 +958,15 @@ function attackselect(attacker) {
 	} else {
 		updateattack(true);
 	}
+	document.getElementById("attackselected").scrollIntoView(false);
 }
+
 function attackshipselect(hp) {
 	document.getElementById("attackselected").innerHTML += " " + hp;
 	document.getElementById("attshipselect").style.display = "none";
 	updateattack(true);
 }
+
 function attvetselect() {
 	if (document.getElementById("attvetselected").style.borderColor == "black") {
 		document.getElementById("attvetselected").style.borderColor = "grey";
@@ -974,6 +977,7 @@ function attvetselect() {
 	}
 	updateattack(false);
 }
+
 function attretselect() {
 	if (document.getElementById("attretselected").style.borderColor == "black") {
 		document.getElementById("attretselected").style.borderColor = "grey";
@@ -983,6 +987,7 @@ function attretselect() {
 		document.getElementById("attretselected").style.backgroundColor = "#0079CE";
 	}
 }
+
 function updateattack(forcereloadhealth) {
 	var key;
 	var attacker_name = document.getElementById("attackselected").innerHTML.replace(/ \d\d HP/g, "");
@@ -1018,7 +1023,13 @@ function defendselect(defender) {
 		document.getElementById("defvetselected").style.display = "none";
 	}
 
-	if (defender == 8 || defender == 9 || defender == 10 || defender == 16) {
+	if (defender == 20) {
+		document.getElementById("defbonusselected").style.display = "none";
+	} else {
+		document.getElementById("defbonusselected").style.display = "inline-block";
+	}
+
+	if (defender == 8 || defender == 9 || defender == 10 || defender == 16 || defender == 20) {
 		document.getElementById("defwallselected").style.display = "none";
 	} else {
 		document.getElementById("defwallselected").style.display = "inline-block";
@@ -1029,6 +1040,7 @@ function defendselect(defender) {
 	} else {
 		updatedefend(true);
 	}
+	document.getElementById("defenderselected").scrollIntoView(false);
 }
 
 function defendshipselect(hp) {
@@ -1036,6 +1048,7 @@ function defendshipselect(hp) {
 	document.getElementById("defshipselect").style.display = "none";
 	updatedefend(true);
 }
+
 function defvetselect() {
 	if (document.getElementById("defvetselected").style.borderColor == "black") {
 		document.getElementById("defvetselected").style.borderColor = "grey";
@@ -1046,6 +1059,7 @@ function defvetselect() {
 	}
 	updatedefend(false);
 }
+
 function defbonusselect() {
 	if (document.getElementById("defbonusselected").style.borderColor == "black") {
 		document.getElementById("defbonusselected").style.borderColor = "grey";
@@ -1071,6 +1085,7 @@ function defwallselect() {
 	}
 	updatedefend(false);
 }
+
 function updatedefend(forcereloadhealth) {
 	var key;
 	var defender_name = document.getElementById("defenderselected").innerHTML.replace(/ \d\d HP/g, "");
@@ -1098,4 +1113,122 @@ function updatedefend(forcereloadhealth) {
 		document.getElementById("defendhprange").value = hpmax;
 	}
 	document.getElementById("defendhpspan").innerHTML = document.getElementById("defendhprange").value + "/" + document.getElementById("defendhprange").max;
+}
+
+/* ----- Calculation Logic ----- */
+function calculate() {
+	function clearresults() {
+		document.getElementById("resultatt").innerHTML = "";
+		document.getElementById("resultdef").innerHTML = "";
+		document.getElementById("resultsplash").innerHTML = "";
+		document.getElementById("note").innerHTML = "";
+	}
+	/**
+	 * Calculates the attack & defense amounts
+	 * @param {Number[]} att - [att, hp, max_hp]
+	 * @param {Number[]} def - [def, hp, max_hp]
+	 * @param {boolean} defbonus 
+	 * @param {boolean} defwall
+	 * @param {boolean} retaliate
+	 * @returns {Number[][]} [att_remaining_hp, def_remaining_hp]
+	 */
+	function calculate_formula(att, def, defbonus, defwall, retaliate) {
+		let accel = 4.5;
+		var atthp = att[1];
+		var defhp = def[1];
+		var attForce, defForce, totalDam, res;
+		// Attacker attacking
+		attForce = att[0] * (att[1] / att[2]);
+		defForce = (defbonus ? def[0] * 1.5 : (defwall ? def[0] * 4 : def[0])) * (def[1] / def[2]);
+		totalDam = attForce + defForce;
+		res = Math.round((attForce / totalDam) * att[0] * accel);
+		defhp -= res;
+		if (defhp > 0 && retaliate) {
+			attForce = def[0] * (def[1] / def[2]);
+			defForce = att[0] * (att[1] / att[2]);
+			totalDam = attForce + defForce;
+			res = Math.round((attForce / totalDam) * def[0] * accel);
+			atthp -= res;
+		}
+		return [atthp, defhp];
+	}
+	var attacker_name = document.getElementById("attackselected").innerHTML;
+	var defender_name = document.getElementById("defenderselected").innerHTML;
+	if (attacker_name == "Select Unit" ||
+		attacker_name == "Boat" ||
+		attacker_name == "Ship" ||
+		attacker_name == "Battleship") {
+		alert("You must select an attacker");
+		return;
+	}
+	if (defender_name == "Select Unit" ||
+		defender_name == "Boat" ||
+		defender_name == "Ship" ||
+		defender_name == "Battleship") {
+		alert("You must select an defender");
+		return;
+	}
+	var att, def, atthp, defhp, attmaxhp, defmaxhp, attret, defbonus, defwall;
+	att = parseInt(document.getElementById("attackspan").innerHTML);
+	def = parseInt(document.getElementById("defendspan").innerHTML);
+	var splits = document.getElementById("attackhpspan").innerHTML.split("/");
+	atthp = parseInt(splits[0]);
+	attmaxhp = parseInt(splits[1]);
+	splits = document.getElementById("defendhpspan").innerHTML.split("/");
+	defhp = parseInt(splits[0]);
+	defmaxhp = parseInt(splits[1]);
+	if (atthp <= 0) {
+		alert("Attacker must be alive!\n(HP must be greater than 0)");
+		return;
+	}
+	if (defhp <= 0) {
+		alert("Defender must be alive!\n(HP must be greater than 0)");
+		return;
+	}
+
+	if (document.getElementById("attretselected").style.display != "none" &&
+		document.getElementById("attretselected").style.borderColor != "black") {
+		attret = false;
+	} else {
+		attret = true;
+	}
+	if (document.getElementById("defbonusselected").style.display != "none" &&
+		document.getElementById("defbonusselected").style.borderColor == "black") {
+		defbonus = true;
+	} else {
+		defbonus = false;
+	}
+	if (document.getElementById("defwallselected").style.display != "none" &&
+		document.getElementById("defwallselected").style.borderColor == "black") {
+		defwall = true;
+	} else {
+		defwall = false;
+	}
+
+	var result = calculate_formula([att, atthp, attmaxhp], [def, defhp, defmaxhp], defbonus, defwall, attret);
+	if (attacker_name == "Fire Dragon") {
+		var splash_result = calculate_formula([att / 2, atthp, attmaxhp], [def, defhp, defmaxhp], defbonus, defwall, attret);
+	}
+
+	clearresults();
+	if (result[1] <= 0) {
+		document.getElementById("resultdef").innerHTML = "Defender is DESTROYED! Afterlife HP: " + result[1];
+	} else {
+		document.getElementById("resultdef").innerHTML = "Defender survives! Afterlife HP: " + result[1];
+		document.getElementById("defendhprange").value = result[1];
+		updatedefend(false);
+		if (result[0] <= 0) {
+			document.getElementById("resultatt").innerHTML = "Attacker is DESTROYED! Afterlife HP: " + result[0];
+		} else {
+			document.getElementById("resultatt").innerHTML = "Attacker survives! Remaining HP: " + result[0];
+		}
+	}
+	if (attacker_name == "Fire Dragon") {
+		document.getElementById("resultsplash").innerHTML = "<p><i>IF SPLASHED:</i></p> "
+		if (result[1] <= 0) {
+			document.getElementById("resultsplash").innerHTML += "Defender is DESTROYED! Afterlife HP: " + splash_result[1];
+		} else {
+			document.getElementById("resultsplash").innerHTML += "Defender survives! REmaining HP: " + splash_result[1];
+		}
+	}
 }

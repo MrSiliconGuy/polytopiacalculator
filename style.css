@@ -2,17 +2,7 @@ h2 {
 	display: inline;
 }
 p {
-	max-height: 999999px;
 	font-size: 17px;
-}
-p.i {
-	font-style: italic;
-}
-input {
-	font-size: 16px;
-}
-select, button {
-	font-size: 15px;
 }
 .selector {
 	width: 60px;
@@ -47,17 +37,9 @@ select, button {
 	position: relative;
 }
 .selectorgroup {
-	display: block;
+	display: inline-block;
 	margin: 1px;
 	padding: 1px;
 	border: 5px black solid;
-	width: 345px;
-}
-
-.selectorgroupship {
-	display: block;
-	margin: 1px;
-	padding: 1px;
-	border: 5px black solid;
-	width: 260px;
+	max-width: 500px;
 }

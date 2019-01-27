@@ -20,12 +20,20 @@
 	<script src="jquery-3.3.1.min.js"> </script>
 	<script src="index.js"> </script>
 </head>
-
+<noscript>
+	<h2>Polytopia Battle Calculator</h2>
+	<span>(by <a href="https://github.com/MrSiliconGuy">MrSiliconGuy</a>,
+		based on <a href="https://frothfrenzy.github.io/polytopiacalculator/">original calculator</a> by <a href="mailto:frothdiscord@gmail.com"
+		 target="_top">FrothFrenzy</a>)</span>
+	<p>Javascript is required to use the calculator!</p>
+	<p>If you are worried about potential security issues, you can always review the code at the project's <a href="https://github.com/mrsiliconguy/polytopiacalculator/">GitHub repository</a>.</p>
+</noscript>
 <body>
 	<div id="main">
-		<h2>Polytopia Battle Calculator</h2><br/>
+		<h2>Polytopia Battle Calculator</h2><br />
 		<span>(by <a href="https://github.com/MrSiliconGuy">MrSiliconGuy</a>,
-			based on <a href="https://frothfrenzy.github.io/polytopiacalculator/">original calculator</a> by <a href="mailto:frothdiscord@gmail.com" target="_top">FrothFrenzy</a>)</span>
+			based on <a href="https://frothfrenzy.github.io/polytopiacalculator/">original calculator</a> by <a href="mailto:frothdiscord@gmail.com"
+			 target="_top">FrothFrenzy</a>)</span>
 
 		<form id="values" onsubmit="return false">
 			<h3>Attacker:</h3>
@@ -117,7 +125,7 @@
 						<span class="selectortext">Fire Dragon</span>
 					</div>
 				</div>
-				<div id="attshipselect" class="selectorgroupship" style="display: none">
+				<div id="attshipselect" class="selectorgroup" style="display: none">
 					<div class="selector" onclick="attackshipselect('10 HP')">
 						<img src="Attackers/Ship.png" class="selectorimage" width="55" height="55">
 						<span class="selectortext">10 HP</span>
@@ -244,11 +252,11 @@
 						<span class="selectortext">Fire Dragon</span>
 					</div>
 					<div class="selector" onclick="defendselect(20);">
-						<img src="Defenders/Fire Dragon.png" class="selectorimage" width="55" height="55">
-						<span class="selectortext">Fire Dragon</span>
+						<img src="Defenders/Nature Bunny.png" class="selectorimage" width="55" height="55">
+						<span class="selectortext">Nature Bunny</span>
 					</div>
 				</div>
-				<div id="defshipselect" class="selectorgroupship" style="display: none">
+				<div id="defshipselect" class="selectorgroup" style="display: none">
 					<div class="selector" onclick="defendshipselect('10 HP')">
 						<img src="Defenders/Ship.png" class="selectorimage" width="55" height="55">
 						<span class="selectortext">10 HP</span>
