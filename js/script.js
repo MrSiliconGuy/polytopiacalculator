@@ -1052,7 +1052,7 @@ function updateattack(forcereloadhealth) {
 	}
 
 	var hpmax;
-	if (isNaN(key[2])) {
+	if (key !== undefined && isNaN(key[2])) {
 		hpmax = parseInt($("#attackselected").html().split(" ")[1]);
 	} else {
 		hpmax = ($("#attvetselected").hasClass("selectorblue") ? key[2] + 5 : key[2]);
@@ -1276,14 +1276,14 @@ function calculate() {
 
 	var result = calculate_formula([att, atthp, attmaxhp], [def, defhp, defmaxhp], defbonus, defwall, attret);
 	if (attacker_name == "Fire Dragon") {
-		var splash_result = [result[0], floor(result[1]/2)];
+		var splash_result = [result[0], Math.floor(result[1]/2)];
 	}
 
 	clearresults();
 	if (result[1] <= 0) {
 		$("#resultdef").html("Defender is DESTROYED! Afterlife HP: " + result[1]);
 	} else {
-		$("#resultdef").html("Defender survives! Afterlife HP: " + result[1]);
+		$("#resultdef").html("Defender survives! Remaining HP: " + result[1]);
 		$("#defendhprange").val(result[1]);
 		updatedefend(false);
 		if (result[0] <= 0) {

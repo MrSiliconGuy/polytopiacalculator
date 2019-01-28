@@ -147,8 +147,8 @@
 				</div>
 				<br />
 				<span>
-					Attacker Attack Value: <span id="attackspan" style="font-weight: bold">0</span> <br />
-					Attacker HP: <span id="attackhpspan" style="font-weight: bold">10/10</span> <br />
+					Attacker Attack Value: <span id="attackspan">0</span> <br />
+					Attacker HP: <span id="attackhpspan">10/10</span> <br />
 					<input id="attackhprange" class="slider" type="range" min="0" max="15" value="0" oninput="updateattack(false)" />
 				</span>
 			</span>
@@ -278,8 +278,8 @@
 				</div>
 				<br />
 				<span>
-					Defender Defend Value: <span id="defendspan" style="font-weight: bold">0</span> <br />
-					Defender HP: <span id="defendhpspan" style="font-weight: bold">10/10</span> <br />
+					Defender Defend Value: <span id="defendspan">0</span> <br />
+					Defender HP: <span id="defendhpspan">10/10</span> <br />
 					<input id="defendhprange" class="slider" type="range" min="0" max="15" value="0" oninput="updatedefend()" />
 				</span>
 			</span>
@@ -289,10 +289,10 @@
 				<a href="#top" onclick="faq()" target="_top">FAQ</a></p>
 		</form>
 
-		<p><b>Result:</b></p>
+		<h2><b>Result:</b></h2>
 		<div onclick="displayextinfo()">
-			<p id="resultatt">Hello there!</p>
-			<p id="resultdef">For more information, read the <a href="#top" onclick="faq()" target="_top">FAQ</a>.
+			<p id="resultatt" style="font-size: 16px">Hello there!</p>
+			<p id="resultdef" style="font-size: 16px">For more information, read the <a href="#top" onclick="faq()" target="_top">FAQ</a>.
 				Happy battling!</p>
 			<p id="resultsplash"></p>
 			<p id="note" class="i"></p>
@@ -302,9 +302,9 @@
 	</div>
 
 	<div id="faq" style="display: none">
-		<h2>Frequently Asked Questions</h2><br /><br /><br />
+		<h2>Frequently Asked Questions</h2>
 
-		<p><a href="javascript:;" onclick="faq()" target="_top">&lt;&lt;&lt; Back to the calculator!</a></p><br />
+		<p><a href="javascript:;" onclick="faq()" target="_top">&lt;&lt;&lt; Back to the calculator!</a></p>
 
 		<h2><b>So how does the calculator work?</b></h2>
 
@@ -337,14 +337,14 @@
 			(stats|D/W), where stats are shown in the same order as they appear on the calculator, and D/W representing the
 			defense/wall bonus for the defender.</p>
 
-		<h2><b>Where does the defense bonus come in?</h2></p>
+		<h2><b>Where does the defense bonus come in?</b></h2>
 
 		<p>The defenceForce variable is increased by a factor of 1.5 if the defender is on a tile that provides a standard
 			defense bonus (see below). If the defender is behind a wall, it's increased by a factor of 4. This corresponds to a
 			50% or 300% increase in defense, respectively. Because only the defenceForce variable is affected by this, you won't
 			get the correct retaliation result if you were to apply the same factor to the defense value of the unit instead.</p>
 
-		<p><b>Which tiles provide the standard defense bonus?</b></p>
+		<h2><b>Which tiles provide the standard defense bonus?</b></h2>
 
 		<p>Non-walled cities and defensive terrain for which you researched the relevant technology - Aquatism for water,
 			Archery for forests and Meditation for mountains. If a player has any of these technologies, their units will have a
@@ -352,13 +352,13 @@
 			that are in friendly cities, with a few exceptions - Aquarion amphibians, crabs and tridentions never receive the
 			defense bonus from cities, even if they are walled.</p>
 
-		<p><b>My unit is attacking from a tile that provides a defense bonus. Why is there no option that accounts for this?</b></p>
+		<h2><b>My unit is attacking from a tile that provides a defense bonus. Why is there no option that accounts for this?</b></h2>
 
 		<p>Contrary to popular belief, this has no effect on the result. You forfeit the bonus entirely. Your unit will
 			receive full damage when the enemy unit retaliates.</p>
 
 		<h2><b>How does the retaliation damage work? Why does the calculator sometimes report that the defender was destroyed
-				but no word on what happened to the attacker?</h2></p>
+				but no word on what happened to the attacker?</b></h2>
 
 		<p>The unit's defense value is used in place of its attack value to calculate the return damage. This is why some
 			units deal significantly less damage when retaliating, while the defender unit and units with defense bonuses deal
@@ -367,8 +367,8 @@
 			the attack outright destroys the defender, there is no retaliation. The attacker is unphased, so there's nothing for
 			the calculator to report.</p>
 
-		<p><b>I'm attacking an enemy with a ranged unit, but that enemy doesn't hit back. The calculator says I receive
-				damage anyway. Does this affect my damage result?</b></p>
+		<h2><b>I'm attacking an enemy with a ranged unit, but that enemy doesn't hit back. The calculator says I receive
+				damage anyway. Does this affect my damage result?</b></h2>
 
 		<p>No. The calculator has no way of knowing if you're attacking a unit next to you, away from you, or a ranged unit
 			that doesn't retaliate because you're in your enemy's fog of war. Simply disregard the retaliation damage - the
@@ -421,10 +421,10 @@
 			Discord server, which you should definitely join if you want to improve your game and meet other players. An invite
 			to the server is posted at the bottom of this FAQ. I have since left Discord so I can focus on other things.</p>
 
-		<p><b>How can I contact you?</b></p>
+		<h2><b>How can I contact you?</b></h2>
 
-		<h2>You can contact me via <a href="mailto:frothdiscord@gmail.com" target="_top">e-mail</a>. By all means contact me
-			if you have any suggestions or bug reports regarding the calculator.</h2>
+		<p>You can contact me via <a href="mailto:frothdiscord@gmail.com" target="_top">e-mail</a>. By all means contact me
+			if you have any suggestions or bug reports regarding the calculator.</p>
 
 		<h2><b>What are Discord challenges?</b></h2>
 
@@ -432,13 +432,13 @@
 			challenge list at the bottom of this FAQ. To be eligible for the scoreboard, you have to join Discord and post your
 			results in the appropriate channel.</p>
 
-		<p><b>How can I become a better player?</b></p>
+		<h2><b>How can I become a better player?</b></h2>
 
 		<p>Read through strategies on the game wikia, Reddit and Discord. Watch videos of experienced players on Youtube. Ask
 			the player-base for help. Most important of all - play a lot, maximize your income and try to learn the mechanics
 			behind the game. It will come in time. The links to help you with this are provided below.</p><br />
 
-		<p><b>Links:</b></p>
+		<h2><b>Links:</b></h2>
 
 		<p><a href="https://discord.gg/YTFTuAq?" target="_blank">Discord</a><br />
 			<a href="http://polytopia.wikia.com/wiki/The_Battle_of_Polytopia_Wikia" target="_blank">Wikia</a><br />
