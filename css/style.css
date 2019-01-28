@@ -1,0 +1,146 @@
+@font-face {
+	font-family: "Josefin Sans Light";
+	src: url("fonts/JosefinSans-Light.ttf")
+}
+@font-face {
+	font-family: "Josefin Sans Regular";
+	src: url("fonts/JosefinSans-Regular.ttf")
+}
+
+body {
+	font-family: 'Josefin Sans Light', 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+	font-size: 14px;
+}
+h1 {
+	display: inline;
+}
+h2 {
+	margin-bottom: 0.3em;
+}
+
+button {
+	font-size: 15px;
+	padding: 20px 15px;
+}
+
+.selector {
+	width: 60px;
+	height: 70px;
+	border: 3px black solid;
+	border-radius: 3px;
+	display: inline-block;
+	position: relative;
+	text-align: center;
+	margin: 1px 0px;
+	vertical-align: top;
+
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-o-user-select: none;
+	user-select: none;
+}
+
+.selector:not(.selectordes):not(.selectorblue):not(.selectorred):hover {
+	background-color: lightgrey;
+}
+
+.selectordes {
+	border: 3px grey solid;
+	background-color: grey;
+}
+
+.selectordes:hover {
+	background-color: rgb(180, 180, 180)
+}
+
+.selectorblue {
+	border: 3px black solid;
+	background-color: #0079CE;
+}
+
+.selectorblue:hover {
+	background-color: rgb(0, 149, 255);
+}
+
+.selectorred {
+	border: 3px black solid;
+	background-color: #DA4747;
+}
+
+.selectorred:hover {
+	background-color: rgb(255, 88, 88);
+}
+
+.selectortext {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	text-align: center;
+	font-size: 10px;
+	background-color: rgba(255, 255, 255, 0.7);
+}
+
+.selectorimage {
+	position: relative;
+	object-fit: contain;
+	pointer-events: none;
+}
+
+.selectorgroup {
+	display: block;
+	max-width: 500px;
+}
+
+
+
+/* The slider itself */
+.slider {
+	-webkit-appearance: none;
+	/* Override default CSS styles */
+	appearance: none;
+	width: 160px;
+	/* Full-width */
+	height: 15px;
+	/* Specified height */
+	margin: 5px 0px;
+	opacity: 0.7;
+	/* Set transparency (for mouse-over effects on hover) */
+	background-color: lightgrey;
+	-webkit-transition: .2s;
+	/* 0.2 seconds transition on hover */
+	transition: opacity .2s;
+}
+
+/* Mouse-over effects */
+.slider:hover {
+	opacity: 1;
+	/* Fully shown on mouse-over */
+}
+
+/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+.slider::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	/* Override default look */
+	appearance: none;
+	width: 15px;
+	/* Set a specific slider handle width */
+	height: 25px;
+	/* Slider handle height */
+	background: #0079CE;
+	/* Green background */
+	cursor: pointer;
+	/* Cursor on hover */
+}
+
+.slider::-moz-range-thumb {
+	width: 15px;
+	/* Set a specific slider handle width */
+	height: 25px;
+	/* Slider handle height */
+	background: #0079CE;
+	/* Green background */
+	cursor: pointer;
+	/* Cursor on hover */
+}
