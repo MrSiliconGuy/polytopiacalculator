@@ -41,8 +41,7 @@ button {
 	user-select: none;
 }
 
-.selector:active,
-.selector:hover {
+.selector:active {
 	background-color: lightgrey;
 }
 
@@ -51,7 +50,7 @@ button {
 	background-color: grey;
 }
 
-.selectordes:active, .selectordes:hover {
+.selectordes:active {
 	background-color: rgb(180, 180, 180)
 }
 
@@ -60,7 +59,7 @@ button {
 	background-color: #0079CE;
 }
 
-.selectorblue:active, .selectorblue:hover {
+.selectorblue:active {
 	background-color: rgb(0, 149, 255);
 }
 
@@ -69,7 +68,7 @@ button {
 	background-color: #DA4747;
 }
 
-.selectorred:active, .selectorred:hover {
+.selectorred:active {
 	background-color: rgb(255, 88, 88);
 }
 
