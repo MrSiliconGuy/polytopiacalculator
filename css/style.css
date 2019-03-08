@@ -41,7 +41,8 @@ button {
 	user-select: none;
 }
 
-.selector:not(.selectordes):not(.selectorblue):not(.selectorred):hover {
+.selector:active,
+.selector:hover {
 	background-color: lightgrey;
 }
 
@@ -50,7 +51,7 @@ button {
 	background-color: grey;
 }
 
-.selectordes:hover {
+.selectordes:active, .selectordes:hover {
 	background-color: rgb(180, 180, 180)
 }
 
@@ -59,7 +60,7 @@ button {
 	background-color: #0079CE;
 }
 
-.selectorblue:hover {
+.selectorblue:active, .selectorblue:hover {
 	background-color: rgb(0, 149, 255);
 }
 
@@ -68,7 +69,7 @@ button {
 	background-color: #DA4747;
 }
 
-.selectorred:hover {
+.selectorred:active, .selectorred:hover {
 	background-color: rgb(255, 88, 88);
 }
 
@@ -97,50 +98,35 @@ button {
 
 /* The slider itself */
 .slider {
-	-webkit-appearance: none;
-	/* Override default CSS styles */
+	-webkit-appearance: square-button;
 	appearance: none;
 	width: 160px;
-	/* Full-width */
 	height: 15px;
-	/* Specified height */
 	margin: 5px 0px;
 	opacity: 0.7;
-	/* Set transparency (for mouse-over effects on hover) */
-	background-color: lightgrey;
+	background-color: black;
 	-webkit-transition: .2s;
-	/* 0.2 seconds transition on hover */
 	transition: opacity .2s;
 }
 
 /* Mouse-over effects */
 .slider:hover {
 	opacity: 1;
-	/* Fully shown on mouse-over */
 }
 
 /* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
 .slider::-webkit-slider-thumb {
 	-webkit-appearance: none;
-	/* Override default look */
 	appearance: none;
 	width: 15px;
-	/* Set a specific slider handle width */
 	height: 25px;
-	/* Slider handle height */
 	background: #0079CE;
-	/* Green background */
 	cursor: pointer;
-	/* Cursor on hover */
 }
 
 .slider::-moz-range-thumb {
 	width: 15px;
-	/* Set a specific slider handle width */
 	height: 25px;
-	/* Slider handle height */
 	background: #0079CE;
-	/* Green background */
 	cursor: pointer;
-	/* Cursor on hover */
 }
